@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.analizagt.com/api',
+  apiUrl: 'https://us-central1-challengeatom-4654d.cloudfunctions.net/api',
 };
