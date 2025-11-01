@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build --configuration production --aot",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {

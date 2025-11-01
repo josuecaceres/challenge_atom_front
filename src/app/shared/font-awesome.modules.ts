@@ -2,15 +2,28 @@ import { NgModule } from '@angular/core';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import {
+  faLock,
   faPenToSquare,
   faPlus,
   faSignOut,
   faTrash,
   faSun,
   faMoon,
+  faEnvelope,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 
-const Icons = [faPenToSquare, faPlus, faSignOut, faTrash, faSun, faMoon];
+const Icons = [
+  faLock,
+  faPenToSquare,
+  faPlus,
+  faSignOut,
+  faTrash,
+  faSun,
+  faMoon,
+  faEnvelope,
+  faUser,
+];
 
 @NgModule({})
 export class FontsModules {
