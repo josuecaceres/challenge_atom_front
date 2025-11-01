@@ -1,0 +1,31 @@
+<img class="img-logo" src="images/logo.png" alt="Logo Analiza" width="200px" />
+<h2 class="text-center mb-6 mt-0">Iniciar Sesión</h2>
+
+<form [formGroup]="loginForm" class="flex flex-column">
+  <p-iconField iconPosition="left" class="w-full mb-4">
+    <p-inputIcon>
+      <fa-icon [icon]="'envelope'"></fa-icon>
+    </p-inputIcon>
+    <input type="email" pInputText variant="filled" placeholder="Email" formControlName="email"
+      class="p-inputtext w-full md:w-25rem surface-100 border-3" />
+  </p-iconField>
+
+  <p-iconField iconPosition="left" class="w-full mb-4">
+    <p-inputIcon>
+      <fa-icon [icon]="'lock'"></fa-icon>
+    </p-inputIcon>
+    <input type="password" pInputText variant="filled" placeholder="Contraseña" formControlName="password"
+      class="p-inputtext w-full md:w-25rem surface-100 border-3" />
+  </p-iconField>
+
+  <p-button label="Ingresar" (onClick)="login()" styleClass="w-full flex justify-content-center" />
+</form>
+
+<div class="mt-5 text-center">
+  ¿No tienes cuenta?
+  <strong class="text-primary">
+    <a class="text-primary" style="cursor: pointer" routerLink="/auth/register">
+      Créala aquí
+    </a>
+  </strong>
+</div>

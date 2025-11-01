@@ -1,0 +1,41 @@
+<div class="overlay flex align-items-center justify-content-center">
+  <div
+    class="card border-round-lg flex flex-column align-items-center justify-content-center w-60-rem text-center px-4 py-4">
+    <div>
+      <h2 class="text-center">Su sesión a expirado</h2>
+      <p>Favor ingresar sus credenciales para continuar.</p>
+    </div>
+
+    <form [formGroup]="loginForm" class="flex flex-column align-items-center">
+      <div class="my-4 flex gap-4 align-items-center justify-content-between">
+        <div class="text-center flex align-items-center">
+          <img class="w-3rem h-3rem mb-2" src="images/user-avatar.png" alt="Avatar" />
+          <div class="flex flex-column gap-1 ml-3 text-left">
+            <span class="font-normal text-lg text-900">
+              {{ this.authServ.currentUser()?.nombre }}
+            </span>
+            <span class="font-normal text-500">
+              {{ this.authServ.currentUser()?.email }}
+            </span>
+          </div>
+        </div>
+
+        <p-button class="ml-2" (onClick)="logout($event)" [rounded]="true" [text]="true" tooltipPosition="bottom">
+          <fa-icon [icon]="'sign-out'" class="menu-icon font-bold text-primary-300 mr-2"></fa-icon>
+
+          Cerrar sesión
+        </p-button>
+      </div>
+
+      <p-iconField iconPosition="left" class="w-full mb-4">
+        <p-inputIcon>
+          <fa-icon [icon]="'lock'"></fa-icon>
+        </p-inputIcon>
+        <input type="password" pInputText variant="filled" placeholder="Contraseña" formControlName="password"
+          class="p-inputtext w-full md:w-25rem surface-100 border-3" />
+      </p-iconField>
+
+      <p-button label="Ingresar" (onClick)="login()" styleClass="w-full md:w-25rem flex justify-content-center" />
+    </form>
+  </div>
+</div>

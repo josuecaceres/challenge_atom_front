@@ -1,0 +1,75 @@
+<div class="p-2 flex flex-column gap-3">
+  <!-- Header -->
+  <div class="flex justify-content-between align-items-center mb-2">
+    <h3>Atom - TaskList</h3>
+    <div class="flex align-items-center gap-2">
+      <p-button class="ml-2" pTooltip="Nueva tarea" [outlined]="true" tooltipPosition="bottom" severity="success"
+        (onClick)="openDialog()">
+        <fa-icon [icon]="'plus'" class="text-success-300 mr-2"></fa-icon>
+        Nueva tarea
+      </p-button>
+    </div>
+  </div>
+
+  <!-- Lista -->
+  @if (tasks().length === 0) {
+  <p class="text-500 text-center mt-5">No tienes tareas pendientes</p>
+  } @else {
+  <div class="flex flex-column gap-3">
+    @for (task of tasks(); track task.id) {
+    <div class="task-card border-round shadow-1 p-3 flex justify-content-between align-items-center" [ngClass]="{
+                'task-completed': task.estado,
+                'task-pending': !task.estado
+              }">
+
+      <!-- izquierda -->
+      <div class="flex align-items-center gap-2">
+        <p-checkbox [binary]="true" [(ngModel)]="task.estado" inputId="{{ task.id }}" (onChange)="toggleStatus(task)">
+        </p-checkbox>
+        <label [for]="task.id" [ngClass]="{ 'line-through text-500': task.estado }" class="cursor-pointer">
+          {{ task.nombre }}
+        </label>
+      </div>
+
+      <!-- derecha -->
+      <div class="flex align-items-center">
+        <p-button pTooltip="Editar tarea" tooltipPosition="bottom" severity="info" [rounded]="true" [text]="true"
+          (onClick)="openDialog(task)">
+          <fa-icon [icon]="'pen-to-square'" class="text-info-300"></fa-icon>
+        </p-button>
+
+        <p-button pTooltip="Eliminar tarea" tooltipPosition="bottom" severity="danger" [rounded]="true" [text]="true"
+          (onClick)="deleteTask($event, task)">
+          <fa-icon [icon]="'trash'" class="text-red-300"></fa-icon>
+        </p-button>
+      </div>
+    </div>
+    }
+  </div>
+  }
+</div>
+
+<p-dialog [(visible)]="showDialog" [closeOnEscape]="false" [header]="
+    currentRegister != null
+      ? 'Editar Tarea'
+      : 'Crear Tarea'
+  " [modal]="true" styleClass="p-fluid" (onHide)="closeModal()">
+  <ng-template pTemplate="content">
+    <form [formGroup]="taskForm">
+      <div class="flex flex-column gap-2 mb-3">
+        <label for="nombre">Nombre</label>
+        <input type="text" pInputText id="nombre" formControlName="nombre" placeholder="Nombre de tarea" />
+        @if (isValidField('nombre')) {
+        <small id="name-help" class="text-red-300">
+          Campo nombre es requerido.
+        </small>
+        }
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" [text]="true" (onClick)="closeModal()" />
+    <p-button label="Guardar" [text]="true" (onClick)="saveTask()" />
+  </ng-template>
+</p-dialog>

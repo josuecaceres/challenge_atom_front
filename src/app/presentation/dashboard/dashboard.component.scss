@@ -1,0 +1,61 @@
+::ng-deep .p-accordion-tab {
+  border: none !important;
+}
+
+.layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+
+    .p2-toolbar {
+      flex-shrink: 0;
+      padding: 1rem 2rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    .divider-fixed {
+      flex-shrink: 0;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto; // scroll solo interno
+      padding: 1rem;
+      box-sizing: border-box; // evita overflow horizontal
+    }
+  }
+
+  .user-info {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--highlight-bg);
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+
+      .user-name {
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .user-role {
+        font-size: 0.75rem;
+        color: #6c757d;
+      }
+    }
+  }
+}

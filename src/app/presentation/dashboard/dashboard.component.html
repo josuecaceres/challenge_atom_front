@@ -1,0 +1,45 @@
+@if (this.authServ.tokenValid() == false) {
+<app-session-expired />
+}
+
+<div class="layout">
+  <!-- Main -->
+  <div class="main">
+    <!-- Toolbar -->
+    <div class="p2-toolbar">
+      <div class="group-start">
+        <div class="user-info menu-item flex align-items-center gap-2 p-2 border-round transition-colors" pRipple
+          (click)="onUserInfoClick()">
+          <p-avatar image="images/user-avatar.png" [style]="{ width: '40px', height: '40px' }" shape="circle"
+            class="avatar"></p-avatar>
+          <div class="user-details flex flex-column">
+            <span class="user-name font-bold">{{
+              authServ.currentUser()?.nombre
+              }}</span>
+            <span class="user-role text-sm">{{
+              authServ.currentUser()?.email
+              }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="group-end flex align-items-center justify-end">
+        <p-button (onClick)="changeTheme()" [rounded]="true" [text]="true" pTooltip="Cerrar Sesión"
+          tooltipPosition="bottom">
+          <fa-icon [icon]="theme() === 'light' ? 'sun' : 'moon'"
+            class="menu-icon font-bold text-yellow-300 mr-2"></fa-icon>
+        </p-button>
+
+        <p-button (onClick)="logout($event)" [rounded]="true" [text]="true" pTooltip="Cerrar Sesión"
+          tooltipPosition="bottom">
+          <fa-icon [icon]="'sign-out'" class="menu-icon font-bold text-primary-300 mr-2"></fa-icon>
+        </p-button>
+      </div>
+    </div>
+
+    <!-- Dynamic Content -->
+    <div class="content">
+      <p-divider />
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
